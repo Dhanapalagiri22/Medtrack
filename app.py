@@ -59,15 +59,15 @@ def publish_to_sns(message, subject="MedTrack Notification"):
         print("SNS not configured, skipping publish.")
 
 # ---------------------------------------
-# Local fallback DB
+# Local fallback DB (commented out for deployment)
 # ---------------------------------------
-local_db = {
-    "users": {},
-    "patients": {},
-    "doctors": {},
-    "appointments": {},
-    "prescriptions": {}
-}
+# local_db = {
+#     "users": {},
+#     "patients": {},
+#     "doctors": {},
+#     "appointments": {},
+#     "prescriptions": {}
+# }
 
 # ---------------------------------------
 # Helpers
