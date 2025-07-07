@@ -31,15 +31,9 @@ APPOINTMENTS_TABLE = os.environ.get('APPOINTMENTS_TABLE_NAME', 'MedTrackAppointm
 PRESCRIPTIONS_TABLE = os.environ.get('PRESCRIPTIONS_TABLE_NAME', 'MedTrackPrescriptions')
 
 try:
-    if os.environ.get("AWS_ACCESS_KEY_ID"):
-        dynamodb = boto3.resource("dynamodb", region_name=AWS_REGION)
-        sns = boto3.client("sns", region_name=AWS_REGION)
-        SNS_TOPIC_ARN = os.environ.get("SNS_TOPIC_ARN")
-    else:
-        dynamodb = None
-        sns = None
-        SNS_TOPIC_ARN = None
-        print("AWS credentials not found. Using local fallback.")
+    dynamodb = boto3.resource("dynamodb", region_name=AWS_REGION)
+    sns = boto3.client("sns", region_name=AWS_REGION)
+    SNS_TOPIC_ARN = os.environ.get("SNS_TOPIC_ARN")
 except Exception as e:
     print(f"DynamoDB/SNS init failed: {e}")
     dynamodb = None
