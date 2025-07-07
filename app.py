@@ -9,6 +9,11 @@ from dotenv import load_dotenv
 import boto3
 
 # ---------------------------------------
+# Load environment variables
+# ---------------------------------------
+load_dotenv()
+
+# ---------------------------------------
 # Flask init
 # ---------------------------------------
 app = Flask(__name__)
@@ -40,17 +45,16 @@ except Exception as e:
     dynamodb = None
     sns = None
     SNS_TOPIC_ARN = None
-# SNS
+
+# ---------------------------------------
+# SNS Notification
+# ---------------------------------------
 def publish_to_sns(message, subject="MedTrack Notification"):
     if sns and SNS_TOPIC_ARN:
         try:
-            sns.publish(
-                TopicArn=SNS_TOPIC_ARN,
-                Message=message,
-                Subject=subject
-            )
+            sns.publish(TopicArn=SNS_TOPIC_ARN, Message=message, Subject=subject)
         except Exception as e:
-            print(f"SNS error: {e}")
+            print(f"SNS publish error: {e}")
     else:
         print("SNS not configured, skipping publish.")
 
@@ -64,6 +68,7 @@ local_db = {
     "appointments": {},
     "prescriptions": {}
 }
+
 # ---------------------------------------
 # Helpers
 # ---------------------------------------
@@ -71,8 +76,6 @@ def get_table(name):
     if dynamodb:
         return dynamodb.Table(name)
     return None
-
-
 
 # ----------------------------------------
 # File Paths
@@ -98,13 +101,6 @@ def load_data(file):
 def save_data(file, data):
     with open(file, 'w') as f:
         json.dump(data, f, indent=4)
-
-def publish_to_sns(message, subject="MedTrack Notification"):
-    if sns and SNS_TOPIC_ARN:
-        try:
-            sns.publish(TopicArn=SNS_TOPIC_ARN, Message=message, Subject=subject)
-        except Exception as e:
-            print(f"SNS publish error: {e}")
 
 def login_required(f):
     @wraps(f)
@@ -240,23 +236,10 @@ def patientform():
 
     return render_template('patientform.html')
 
-
-#@login_required
-#def patientdashboard():
- #   patients = load_data(PATIENTS_FILE)
-  #  patient = next((p for p in patients if p['email'] == g.user['email']), None)
-
-#    if not patient:
-        #flash("No patient data found. Please fill out the form.", "danger")
-        #return redirect(url_for('patientform'))
-
-   # return render_template('patientdashboard.html', patient=patient, prescriptions=patient.get('prescriptions', []))
-
 @app.route('/patientdashboard')
 @login_required
 def patientdashboard():
     patients = load_data(PATIENTS_FILE)
-   # patient = next((p for p in patients if p['email'] == g.user['email']), None)
     patient = next((p for p in patients if p.get('email') == g.user['email']), None)
 
     if not patient:
