@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MedTrack Website</title>
+  <style>
+    body {
+      background-image: url(https://img.freepik.com/free-photo/health-still-life-with-copy-space_23-2148854031.jpg?semt=ais_hybrid&w=740);
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-attachment: fixed;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f5f5f5;
+      color: black;
+    }
+    nav {
+      background-color: #0077b6;
+      padding: 1em;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo {
+      font-size: 24px;
+      color: white;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+    }
+    .logo::before {
+      content: "\2695 ";
+      font-size: 28px;
+      margin-right: 8px;
+    }
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      margin-left: 20px;
+      cursor: pointer;
+    }
+    section {
+      padding: 2em;
+      display: none;
+    }
+    section.active {
+      display: block;
+    }
+    .form-group {
+      margin-bottom: 1em;
+    }
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5em;
+    }
+    .form-group input,
+    .form-group select {
+      width: 100%;
+      padding: 0.5em;
+    }
+    button {
+      padding: 0.5em 1em;
+      background-color: #0077b6;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    h2 {
+      color: #0077b6;
+    }
+    .form-box {
+      background-color: white;
+      max-width: 400px;
+      margin: 2em auto;
+      padding: 1.5em;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+    }
+    .about-box, .home-container {
+      background-color: white;
+      max-width: 750px;
+      margin: 2em auto;
+      padding: 2em;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+    }
+    .center-title {
+      text-align: center;
+      font-size: 36px;
+      margin-top: 50px;
+    }
+    .home-text {
+      font-size: 16px;
+      line-height: 1.6;
+    }
+    ul.service-list {
+      padding-left: 20px;
+      line-height: 1.8;
+    }
+    ul.service-list li {
+      margin-bottom: 10px;
+    }
+    .account-options {
+      display: flex;
+      gap: 10px;
+      margin-top: 0.5em;
+    }
+    .account-option {
+      padding: 0.5em 1em;
+      border: 2px solid #0077b6;
+      border-radius: 6px;
+      background-color: #e0f3fc;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: background-color 0.3s ease;
+    }
+    .account-option:hover {
+      background-color: #cdefff;
+    }
+    .account-option input[type="radio"] {
+      accent-color: #0077b6;
+    }
+    .contact-box {
+  background-color: white;
+  max-width: 600px;
+  margin: 2em auto;
+  padding: 2em;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #333;
+}
+
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="logo">MedTrack</div>
+    <div class="nav-links">
+      <a onclick="showPage('home')">Home</a>
+      <a onclick="showPage('login')">Login</a>
+      <a onclick="showPage('signup')">Signup</a>
+      <a onclick="showPage('services')">Services</a>
+      <a onclick="showPage('about')">About Us</a>
+      <a onclick="showPage('doctor')">Doctors</a>
+      <a onclick="showPage('contact')">Contact Us</a>
+    </div>
+  </nav>
+
+  <section id="home" class="active">
+    <h2 class="center-title">Welcome to MedTrack</h2>
+    <div class="home-container">
+      <div class="home-text">
+        <p>MedTrack is your one-stop destination for managing your healthcare needs. Whether you are a patient tracking medical appointments, prescriptions, or health records, or a doctor managing patient progress, MedTrack offers the solution.</p>
+        <p>MedTrack is designed for simplicity and security. It ensures that healthcare services are efficient, reliable, and accessible to everyone regardless of technical skills.</p>
+        <p>Users can schedule appointments, access health history, consult doctors, and receive medication reminders.</p>
+        <p>Doctors have streamlined tools to handle multiple patients, view histories, issue digital prescriptions, and maintain clear communications.</p>
+        <p>Our intuitive design enables elderly users, patients with disabilities, and medical professionals to interact effortlessly with the system.</p>
+        <p>MedTrack protects your data with state-of-the-art encryption and secure cloud storage.</p>
+        <p>The system supports live alerts, follow-up tracking, hospital integration, lab reports access, and multi-user management.</p>
+        <p>Our goal is to bridge the gap between doctors and patients through real-time communication and smart record keeping.</p>
+        <p>Whether you're monitoring chronic illnesses or managing multiple patient records, MedTrack adapts to your needs.</p>
+        <p>Explore advanced health analytics, personalized health dashboards, and regular progress charts built into MedTrack.</p>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="login">
+    <div class="form-box">
+      <h2>Login</h2>
+      <form action="/login" method="POST">
+        <div class="form-group">
+          <label>Email:</label>
+          <input type="email" name="email" required />
+        </div>
+        <div class="form-group">
+          <label>Password:</label>
+          <input type="password" name="password" required />
+        </div>
+        <button type="submit">Login</button>
+      </form>
+    </div>
+  </section>
+
+  <section id="signup">
+    <div class="form-box">
+      <h2>Sign Up</h2>
+      <form action="/signup" method="POST">
+        
+        <div class="form-group">
+          <label>Name:</label>
+          <input type="text" name="name" required />
+        </div>
+        <div class="form-group">
+          <label>Age:</label>
+          <input type="number" name="age" required />
+        </div>
+        <div class="form-group">
+          <label>Gender:</label>
+          <select name="gender" required>
+            <option value="">Select</option>
+            <option>Male</option>
+            <option>Female</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Contact Number:</label>
+          <input type="text" name="contact" required />
+        </div>
+        <div class="form-group">
+          <label>Email:</label>
+          <input type="email" name="email" required />
+        </div>
+        <div class="form-group">
+          <label>Password:</label>
+          <input type="password" name="password" required />
+        </div>
+        <div class="form-group">
+          <label>Confirm Password:</label>
+          <input type="password" name="confirm_password" required />
+        </div>
+        <button type="submit">Sign Up</button>
+      </form>
+    </div>
+  </section>
+
+  <section id="services">
+    <div class="about-box">
+      <h2>Our Services</h2>
+      <ul class="service-list">
+        <li><strong>Appointment Scheduling:</strong> Book and manage appointments with real-time confirmations.</li>
+        <li><strong>Health Record Access:</strong> View, download, and share your health history and lab reports.</li>
+        <li><strong>Digital Prescriptions:</strong> Receive and manage prescriptions issued by certified doctors.</li>
+        <li><strong>Medication Reminders:</strong> Timely alerts for taking medications to ensure adherence.</li>
+        <li><strong>Doctor-Patient Messaging:</strong> Secure communication between doctors and patients.</li>
+        <li><strong>Lab & Diagnostic Integration:</strong> Direct access to test results from partnered labs.</li>
+        <li><strong>Remote Monitoring:</strong> Tools to monitor vitals and chronic conditions from home.</li>
+        <li><strong>Health Analytics:</strong> Graphical health dashboards to track progress and trends.</li>
+        <li><strong>Secure Data Storage:</strong> Encrypted cloud-based storage for all records.</li>
+        <li><strong>Multi-language Support:</strong> Access services in your preferred language.</li>
+        <li><strong>Hospital Collaboration:</strong> Sync data across clinics, hospitals, and labs.</li>
+        <li><strong>Accessibility Features:</strong> Voice input, large buttons, and assistive design for elderly and disabled users.</li>
+
+      </ul>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="about-box">
+      <h2>About Us</h2>
+      <p>MedTrack is a pioneering healthcare technology platform aimed at revolutionizing how medical information is stored, accessed, and shared. Our mission is to empower individuals with better healthcare tools. MedTrack bridges the gap between patients and providers through real-time communication and digital medical record integration.</p>
+      <p>We offer seamless appointment scheduling, lab results integration, personalized alerts, and follow-up systems. Doctors can manage cases, set reminders, prescribe medications, and monitor patient progress remotely.</p>
+      <p>With secure login portals for both patients and doctors, MedTrack ensures confidentiality and accessibility. All records are encrypted and backed up in real-time using the latest cloud technologies.</p>
+      <p>We believe in inclusive healthcare. Our platform is designed for accessibility by elderly users, visually impaired individuals, and low-tech communities. Features such as voice commands, large buttons, and simplified workflows ensure usability for all.</p>
+      <p>MedTrack supports mobile and desktop devices, ensuring availability at home, in clinics, or on the move. Integration with hospital systems and labs makes diagnosis and treatment seamless.</p>
+      <p>Backed by healthcare experts and technologists, MedTrack continues to evolve with AI-based diagnostics, remote consultation tools, and multilingual support.</p>
+      <p>We continuously update our services based on user feedback and medical standards to ensure safety, precision, and ease.</p>
+      <p>Our future roadmap includes wearable health integration, mental wellness tracking, and AI-assisted triage tools for hospitals and emergency services.</p>
+      <p>MedTrack isn't just software—it's a healthcare revolution.</p>
+    </div>
+  </section>
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Doctor Details - MedTrack</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f8ff;
+      margin: 0;
+      padding: 0;
+    }
+
+    .doctor-box {
+      padding: 30px;
+      text-align: center;
+    }
+
+    .doctor-box h2 {
+      color: #0077b6;
+      margin-bottom: 20px;
+    }
+
+    .doctor-container {
+      display: flex;
+      overflow-x: auto;
+      gap: 20px;
+      padding-bottom: 20px;
+      scroll-behavior: smooth;
+    }
+
+    .doctor-card {
+      min-width: 300px;
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      padding: 20px;
+      flex-shrink: 0;
+      text-align: left;
+    }
+
+    .doctor-card h3 {
+      margin-top: 0;
+      color: #0077b6;
+    }
+
+    .doctor-card p {
+      margin: 6px 0;
+      font-size: 14px;
+    }
+
+    /* Optional: smooth scrolling bar */
+    .doctor-container::-webkit-scrollbar {
+      height: 10px;
+    }
+
+    .doctor-container::-webkit-scrollbar-thumb {
+      background-color: #0077b6;
+      border-radius: 5px;
+    }
+
+    .doctor-container::-webkit-scrollbar-track {
+      background-color: #d0eaff;
+    }
+  </style>
+</head>
+<body>
+
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Doctor Details - MedTrack</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f8ff;
+      margin: 0;
+      padding: 0;
+    }
+
+    .doctor-box {
+      padding: 30px;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    .doctor-box h2 {
+      color: #0077b6;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .doctor-card {
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+
+    .doctor-card h3 {
+      margin-top: 0;
+      color: #0077b6;
+    }
+
+    .doctor-card p {
+      margin: 6px 0;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+
+  <section id="doctor">
+    <div class="doctor-box">
+      <h2>Meet Our Specialized Doctors</h2>
+
+      <div class="doctor-card">
+        <h3>Dr. Ananya Sharma</h3>
+        <p><strong>Specialization:</strong> Cardiologist</p>
+        <p><strong>Experience:</strong> 12 years</p>
+        <p><strong>Available:</strong> Mon - Fri, 10 AM - 4 PM</p>
+      </div>
+
+      <div class="doctor-card">
+        <h3>Dr. Ravi Kumar</h3>
+        <p><strong>Specialization:</strong> Neurologist</p>
+        <p><strong>Experience:</strong> 10 years</p>
+        <p><strong>Available:</strong> Mon - Sat, 2 PM - 8 PM</p>
+      </div>
+
+      <div class="doctor-card">
+        <h3>Dr. Meera Desai</h3>
+        <p><strong>Specialization:</strong> Pediatrician</p>
+        <p><strong>Experience:</strong> 8 years</p>
+        <p><strong>Available:</strong> Mon - Fri, 9 AM - 3 PM</p>
+      </div>
+
+      <div class="doctor-card">
+        <h3>Dr. Arvind Nair</h3>
+        <p><strong>Specialization:</strong> Orthopedic Surgeon</p>
+        <p><strong>Experience:</strong> 15 years</p>
+        <p><strong>Available:</strong> Tue - Sat, 11 AM - 5 PM</p>
+      </div>
+
+      <div class="doctor-card">
+        <h3>Dr. Priya Menon</h3>
+        <p><strong>Specialization:</strong> Dermatologist</p>
+        <p><strong>Experience:</strong> 6 years</p>
+        <p><strong>Available:</strong> Mon, Wed, Fri - 1 PM to 6 PM</p>
+      </div>
+
+      <div class="doctor-card">
+        <h3>Dr. Vivek Raj</h3>
+        <p><strong>Specialization:</strong> Psychiatrist</p>
+        <p><strong>Experience:</strong> 9 years</p>
+        <p><strong>Available:</strong> Mon - Fri, 11 AM - 3 PM</p>
+      </div>
+
+      <div class="doctor-card">
+        <h3>Dr. Sneha Kulkarni</h3>
+        <p><strong>Specialization:</strong> Ophthalmologist</p>
+        <p><strong>Experience:</strong> 7 years</p>
+        <p><strong>Available:</strong> Tue - Sat, 10 AM - 2 PM</p>
+      </div>
+
+      <div class="doctor-card">
+        <h3>Dr. Nandita Joshi</h3>
+        <p><strong>Specialization:</strong> Gynecologist</p>
+        <p><strong>Experience:</strong> 11 years</p>
+        <p><strong>Available:</strong> Mon - Sat, 9 AM - 1 PM</p>
+      </div>
+
+      <div class="doctor-card">
+        <h3>Dr. Rakesh Iyer</h3>
+        <p><strong>Specialization:</strong> ENT Specialist</p>
+        <p><strong>Experience:</strong> 10 years</p>
+        <p><strong>Available:</strong> Wed - Sun, 3 PM - 7 PM</p>
+      </div>
+
+      <div class="doctor-card">
+        <h3>Dr. Kavita Sinha</h3>
+        <p><strong>Specialization:</strong> Oncologist</p>
+        <p><strong>Experience:</strong> 13 years</p>
+        <p><strong>Available:</strong> Mon, Thu, Sat, 10 AM - 1 PM</p>
+      </div>
+
+      <div class="doctor-card">
+        <h3>Dr. Faizan Ahmed</h3>
+        <p><strong>Specialization:</strong> Nephrologist</p>
+        <p><strong>Experience:</strong> 8 years</p>
+        <p><strong>Available:</strong> Tue - Fri, 12 PM - 4 PM</p>
+      </div>
+
+    </div>
+  </section>
+
+</body>
+</html>
+
+  <!-- Contact Section -->
+  <section id="contact">
+    <div class="contact-box">
+      <h2>Contact Us</h2>
+      <p>If you have any queries, feedback, or need assistance, feel free to reach out to us:</p>
+      <p><strong>Phone:</strong> + 9876543210</p>
+      <p><strong>Email:</strong> support@medtrack.com</p>
+    </div>
+  </section>
+
+  <script>
+    function showPage(pageId) {
+      const sections = document.querySelectorAll("section");
+      sections.forEach(section => {
+        section.classList.remove("active");
+      });
+      document.getElementById(pageId).classList.add("active");
+    }
+  </script>
+</body>
+</html>
