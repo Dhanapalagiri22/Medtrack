@@ -31,8 +31,9 @@ APPOINTMENTS_TABLE = os.environ.get('APPOINTMENTS_TABLE_NAME', 'MedTrackAppointm
 PRESCRIPTIONS_TABLE = os.environ.get('PRESCRIPTIONS_TABLE_NAME', 'MedTrackPrescriptions')
 
 try:
-    dynamodb = boto3.resource("dynamodb", region_name=AWS_REGION)
-    sns = boto3.client("sns", region_name=AWS_REGION)
+    session = boto3.session.Session()
+    dynamodb = session.resource("dynamodb", region_name=AWS_REGION)
+    sns = session.client("sns", region_name=AWS_REGION)
     SNS_TOPIC_ARN = os.environ.get("SNS_TOPIC_ARN")
 except Exception as e:
     print(f"DynamoDB/SNS init failed: {e}")
